@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 farcaster = "^0.7.0"
+typer = {extras = ["all"], version = "^0.7.0"}
 
 [tool.poetry.dev-dependencies]
 
