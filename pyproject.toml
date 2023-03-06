@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "farcaster-cli"
-version = "0.1.2"
+version = "0.1.3"
 description = "Farcaster CLI Client"
 authors = ["Mason Hall <masonhall@gmail.com>"]
 license = "MIT"

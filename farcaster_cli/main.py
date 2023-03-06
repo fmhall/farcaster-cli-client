@@ -11,7 +11,7 @@ cast_link_prefix = "farcaster://casts/"
 user_link_prefix = "farcaster://profiles/"
 
 
-def main(mnemonic: str, watch_all: bool = False):
+def main(mnemonic: str, watch_all: bool = False, skip_existing: bool = False):
     with Progress(
         SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
@@ -33,7 +33,7 @@ def main(mnemonic: str, watch_all: bool = False):
         transient=True,
     ) as progress:
         progress.add_task(description="Listening for new casts...", total=None)
-        for cast in client.stream_casts():
+        for cast in client.stream_casts(skip_existing=skip_existing):
             if cast:
                 if not watch_all:
                     if cast.author.fid not in following:

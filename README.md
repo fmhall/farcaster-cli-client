@@ -40,3 +40,4 @@ farcaster-cli $MNEMONIC --watch-all
 ```
 
 This subscribes to all recent casts. If you want only the casts of people you follow, remove `--watch-all`.
+You can also include `--skip-existing` to only get new casts after the client starts.
