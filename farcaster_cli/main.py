@@ -27,19 +27,24 @@ def main(mnemonic: str, watch_all: bool = False):
             following_users = client.get_all_following().users
             following = set([user.fid for user in following_users])
     print("Ready!")
-
-    for cast in client.stream_casts():
-        if cast:
-            if not watch_all:
-                if cast.author.fid not in following:
-                    continue
-            if cast.text.startswith("recast:farcaster://casts/"):
-                recaster = cast.author
-                cast_hash = cast.text.lstrip("recast:farcaster://casts/")
-                cast = client.get_cast(cast_hash).cast
-            else:
-                recaster = None
-            print_cast(cast, recaster)
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        transient=True,
+    ) as progress:
+        progress.add_task(description="Listening for new casts...", total=None)
+        for cast in client.stream_casts():
+            if cast:
+                if not watch_all:
+                    if cast.author.fid not in following:
+                        continue
+                if cast.text.startswith("recast:farcaster://casts/"):
+                    recaster = cast.author
+                    cast_hash = cast.text.lstrip("recast:farcaster://casts/")
+                    cast = client.get_cast(cast_hash).cast
+                else:
+                    recaster = None
+                print_cast(cast, recaster)
 
 
 def print_cast(cast: ApiCast, recaster: Optional[ApiUser] = None) -> None:
