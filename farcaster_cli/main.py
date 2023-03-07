@@ -1,5 +1,5 @@
 import typer
-from farcaster import Warpcast
+from farcaster.client import Warpcast
 from farcaster.models import ApiCast, ApiUser
 from typing import Optional, Set
 from rich import print
