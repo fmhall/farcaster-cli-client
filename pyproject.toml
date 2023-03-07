@@ -11,7 +11,7 @@ farcaster-cli = "farcaster_cli.main:start"
 
 [tool.poetry.dependencies]
 python = "^3.7.2"
-farcaster = "^0.7.2"
+farcaster = "^0.7.3"
 typer = {extras = ["all"], version = "^0.7.0"}
 
 [tool.poetry.dev-dependencies]
